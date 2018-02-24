@@ -1,0 +1,2066 @@
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_ProcurementMethod]    Script Date: 24-02-2018 11:51:29 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_ProcurementMethod](
+	[ProcurementMethodID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ProcurementMethodCode] [varchar](50) NULL,
+	[ProcurementMethod] [varchar](50) NULL,
+	[ElapsedPeriod] [tinyint] NULL,
+	[NoofDaysforBid] [tinyint] NULL,
+	[BidDocumentPreparationDate_days] [tinyint] NULL,
+	[BankNOCForBiddingDocuments_days] [tinyint] NULL,
+	[BidInvitationDate_days] [tinyint] NULL,
+	[BidOpeningDate_days] [tinyint] NULL,
+	[TORFinalizationDate_days] [tinyint] NULL,
+	[AdvertisementDate_days] [tinyint] NULL,
+	[FinalDraftToBeForwardedToTheBankDate_days] [tinyint] NULL,
+	[NoObjectionFromBankForRFP_days] [tinyint] NULL,
+	[RFPIssuedDate_days] [tinyint] NULL,
+	[LastDateToReceiveProposals_days] [tinyint] NULL,
+	[EvaluationDate_days] [tinyint] NULL,
+	[NoObjectionFromBankForEvaluation_days] [tinyint] NULL,
+	[ContractAwardDate_days] [tinyint] NULL,
+	[ContractCompletionDate_days] [tinyint] NULL,
+	[ProcurementCategory] [varchar](15) NULL,
+	[TORFinalizationDate_WithoutBankNOC_days] [tinyint] NULL,
+	[AdvertisementDate_WithoutBankNOC_days] [tinyint] NULL,
+	[RFPIssuedDate_WithoutBankNOC_days] [tinyint] NULL,
+	[LastDateToReceiveProposals_WithoutBankNOC_days] [tinyint] NULL,
+	[EvaluationDate_WithoutBankNOC_days] [tinyint] NULL,
+	[ContractAwardDate_WithoutBankNOC_days] [tinyint] NULL,
+	[ContractCompletionDate_WithoutBankNOC_days] [tinyint] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Pro__1A71DAB6] PRIMARY KEY CLUSTERED 
+(
+	[ProcurementMethodID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_ProcurementPlanPeriod]    Script Date: 24-02-2018 11:55:23 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_ProcurementPlanPeriod](
+	[PPPeriodID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[PPTitle] [varchar](100) NULL,
+	[StartDate] [datetime] NULL,
+	[EndDate] [datetime] NULL,
+	[LastSubmissionDate] [datetime] NULL,
+	[SPFULastSubmissionDate] [datetime] NULL,
+	[GracePeriod] [tinyint] NULL,
+	[OnHold] [tinyint] NULL,
+	[IsCurrentPlan] [bit] NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Pro__7C2D4AB8] PRIMARY KEY CLUSTERED 
+(
+	[PPPeriodID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_ProcurementStages]    Script Date: 24-02-2018 11:55:41 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_ProcurementStages](
+	[ProcurementStageID] [int] IDENTITY(1,1) NOT NULL,
+	[ProcurementStage] [varchar](500) NULL,
+	[IsActive] [bit] NULL,
+	[OrderNumber] [int] NULL,
+	[Description] [nvarchar](4000) NULL,
+	[StageID] [uniqueidentifier] NULL,
+	[EntityID] [int] NULL,
+	[SendMail] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ProcurementStageID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_CNF_PMSS_ProcurementStages] ADD  DEFAULT ((0)) FOR [SendMail]
+GO
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_ItemCategory]    Script Date: 24-02-2018 12:08:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_ItemCategory](
+	[ItemCategoryID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ItemCategory] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ite__0D17DF98] PRIMARY KEY CLUSTERED 
+(
+	[ItemCategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_ItemSubCategory]    Script Date: 24-02-2018 12:08:17 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_ItemSubCategory](
+	[ItemSubCategoryID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ItemSubCategory] [varchar](50) NULL,
+	[ItemCategoryID] [tinyint] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ite__27CBD5D4] PRIMARY KEY CLUSTERED 
+(
+	[ItemSubCategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SubComponent]    Script Date: 24-02-2018 12:08:28 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SubComponent](
+	[SubComponentID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[SubComponentCode] [varchar](50) NULL,
+	[SubComponentName] [varchar](500) NULL,
+	[ComponentID] [tinyint] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Sub__29B41E46] PRIMARY KEY CLUSTERED 
+(
+	[SubComponentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_Activities]    Script Date: 24-02-2018 12:09:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_Activities](
+	[ActivityID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ActivityName] [varchar](500) NULL,
+	[NpiuTest] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Act__23FB44F0] PRIMARY KEY CLUSTERED 
+(
+	[ActivityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SubComponentActivityMapping]    Script Date: 24-02-2018 12:09:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SubComponentActivityMapping](
+	[SubcomponentActivityMappingID] [int] IDENTITY(1,1) NOT NULL,
+	[SubComponentID] [tinyint] NULL,
+	[ActivityID] [tinyint] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Sub__2B9C66B8] PRIMARY KEY CLUSTERED 
+(
+	[SubcomponentActivityMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SubCriteria]    Script Date: 24-02-2018 14:04:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SubCriteria](
+	[SubCriteriaID] [int] IDENTITY(1,1) NOT NULL,
+	[CriteriaID] [int] NULL,
+	[SubCriteria] [varchar](500) NULL,
+	[Marks] [float] NULL,
+	[OrderNumber] [tinyint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[SubCriteriaID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_BidderSource]    Script Date: 24-02-2018 13:59:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_BidderSource](
+	[BidderSourceID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[BidderSource] [varchar](250) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Bid__290ADE27] PRIMARY KEY CLUSTERED 
+(
+	[BidderSourceID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_Component]    Script Date: 24-02-2018 14:00:02 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_Component](
+	[ComponentID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ComponentCode] [varchar](20) NULL,
+	[ComponentName] [varchar](500) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Com__0576BDD0] PRIMARY KEY CLUSTERED 
+(
+	[ComponentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_ContractTypes]    Script Date: 24-02-2018 14:00:41 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_ContractTypes](
+	[ContractTypeID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[ContractType] [varchar](100) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Con__202AB40C] PRIMARY KEY CLUSTERED 
+(
+	[ContractTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_DocumentCategoryMapping]    Script Date: 24-02-2018 14:01:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_DocumentCategoryMapping](
+	[MappingID] [smallint] IDENTITY(1,1) NOT NULL,
+	[ProcMethodID] [tinyint] NULL,
+	[ItemCategoryID] [tinyint] NULL,
+	[DocumentCategoryID] [int] NULL,
+	[OrderNo] [tinyint] NULL,
+	[ProcurementStageID] [int] NULL
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_Institute_Category_Ratings]    Script Date: 24-02-2018 14:01:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_Institute_Category_Ratings](
+	[CategoryID] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryName] [varchar](50) NULL,
+	[Result] [varchar](20) NULL,
+	[FromValue] [float] NULL,
+	[ToValue] [float] NULL,
+ CONSTRAINT [PK_tab_CNF_PMSS_Institute_Category_Ratings] PRIMARY KEY CLUSTERED 
+(
+	[CategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_Institution]    Script Date: 24-02-2018 14:01:23 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_Institution](
+	[InstitutionID] [smallint] IDENTITY(1,1) NOT NULL,
+	[InstitutionCode] [varchar](50) NULL,
+	[InstitutionName] [varchar](250) NULL,
+	[State] [varchar](50) NULL,
+	[Address] [varchar](250) NULL,
+	[EmailID] [varchar](50) NULL,
+	[TelephoneNumber] [varchar](250) NULL,
+	[FaxNumber] [varchar](250) NULL,
+	[InstitutionTypeID] [tinyint] NULL,
+	[MonitoringAgency] [tinyint] NULL,
+	[SPFUID] [smallint] NULL,
+	[DirectorID] [int] NULL,
+	[AllocatedBudget] [float] NULL,
+	[WebSiteURL] [varchar](50) NULL,
+	[PkgRunningSrNo] [int] NULL,
+	[ProcRunningSrNo] [int] NULL,
+	[AssetSrNo] [bigint] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ins__7AF92F5D] PRIMARY KEY CLUSTERED 
+(
+	[InstitutionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_CNF_PMSS_Institution] ADD  CONSTRAINT [DF__tbl_CNF_P__Asset__0E8BF215]  DEFAULT ((0)) FOR [AssetSrNo]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_InstitutionDepartmentMapping]    Script Date: 24-02-2018 14:01:32 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_InstitutionDepartmentMapping](
+	[InstitutionDepartmentMappingID] [smallint] IDENTITY(1,1) NOT NULL,
+	[InstitutionID] [smallint] NULL,
+	[DepartmentCode] [varchar](50) NULL,
+	[DepartmentName] [varchar](100) NULL,
+	[DepartmentHead] [varchar](200) NULL,
+	[IsSystemDefined] [bit] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ins__12D0B8EE] PRIMARY KEY CLUSTERED 
+(
+	[InstitutionDepartmentMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_InstitutionLogo]    Script Date: 24-02-2018 14:01:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_InstitutionLogo](
+	[InstitutionLogoID] [smallint] IDENTITY(1,1) NOT NULL,
+	[InstitutionID] [smallint] NULL,
+	[OriginalFileName] [varchar](500) NULL,
+	[SystemFileName] [varchar](500) NULL,
+	[AttachedBy] [varchar](50) NULL,
+	[LoginType] [char](1) NULL,
+	[DateAttached] [datetime] NULL,
+	[Description] [varchar](500) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ins__67F147E1] PRIMARY KEY CLUSTERED 
+(
+	[InstitutionLogoID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_InstitutionPurchaseCommitte]    Script Date: 24-02-2018 14:01:58 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_InstitutionPurchaseCommitte](
+	[InstitutionPCommitteMappingID] [smallint] IDENTITY(1,1) NOT NULL,
+	[InstitutionID] [smallint] NULL,
+	[DepartmentID] [smallint] NULL,
+	[CommitteMemberName] [varchar](250) NULL,
+	[Designation] [varchar](50) NULL,
+	[PCommitteRole] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ins__14B90160] PRIMARY KEY CLUSTERED 
+(
+	[InstitutionPCommitteMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_InstitutionSubcomponentMapping]    Script Date: 24-02-2018 14:02:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_InstitutionSubcomponentMapping](
+	[InstitutionSubComponentMappingID] [smallint] IDENTITY(1,1) NOT NULL,
+	[InstitutionID] [smallint] NULL,
+	[SubComponentID] [tinyint] NULL,
+	[AllocatedBudget] [float] NULL,
+	[BudgetForProcurement] [float] NULL,
+	[BudgetForCW] [float] NULL,
+	[BudgetForServices] [float] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ins__7F3EC18D] PRIMARY KEY CLUSTERED 
+(
+	[InstitutionSubComponentMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_InstitutionType]    Script Date: 24-02-2018 14:03:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_InstitutionType](
+	[InstitutionTypeID] [tinyint] IDENTITY(1,1) NOT NULL,
+	[InstitutionType] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Ins__0F00280A] PRIMARY KEY CLUSTERED 
+(
+	[InstitutionTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_NPIUPurchaseCommitte]    Script Date: 24-02-2018 14:03:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_NPIUPurchaseCommitte](
+	[NPIUPCommitteMappingID] [int] IDENTITY(1,1) NOT NULL,
+	[CompanyInfoID] [tinyint] NULL,
+	[CommitteMemberName] [varchar](250) NULL,
+	[Designation] [varchar](50) NULL,
+	[PCommitteRole] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_NPI__7342FEFC] PRIMARY KEY CLUSTERED 
+(
+	[NPIUPCommitteMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SPFU]    Script Date: 24-02-2018 14:03:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SPFU](
+	[SPFUID] [smallint] IDENTITY(1,1) NOT NULL,
+	[SPFUCode] [varchar](50) NULL,
+	[SPFUName] [varchar](250) NULL,
+	[State] [varchar](50) NULL,
+	[Address] [varchar](250) NULL,
+	[EmailID] [varchar](50) NULL,
+	[TelephoneNumber] [varchar](250) NULL,
+	[FaxNumber] [varchar](250) NULL,
+	[SPAID] [int] NULL,
+	[AllocatedBudget] [float] NULL,
+	[WebSiteURL] [varchar](50) NULL,
+	[PkgRunningSrNo] [int] NULL,
+	[ProcRunningSrNo] [int] NULL,
+	[SPFUAssetSrNo] [bigint] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_SPF__16A149D2] PRIMARY KEY CLUSTERED 
+(
+	[SPFUID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_CNF_PMSS_SPFU] ADD  CONSTRAINT [DF__tbl_CNF_P__SPFUA__0F80164E]  DEFAULT ((0)) FOR [SPFUAssetSrNo]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SPFULogo]    Script Date: 24-02-2018 14:03:47 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SPFULogo](
+	[SPFULogoID] [smallint] IDENTITY(1,1) NOT NULL,
+	[SPFUID] [smallint] NULL,
+	[OriginalFileName] [varchar](500) NULL,
+	[SystemFileName] [varchar](500) NULL,
+	[AttachedBy] [varchar](50) NULL,
+	[LoginType] [char](1) NULL,
+	[DateAttached] [datetime] NULL,
+	[Description] [varchar](500) NULL,
+ CONSTRAINT [PK_tbl_CNF_PMSS_SPFULogo] PRIMARY KEY CLUSTERED 
+(
+	[SPFULogoID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SPFUPurchaseCommitte]    Script Date: 24-02-2018 14:04:08 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SPFUPurchaseCommitte](
+	[SPFUPCommitteMappingID] [smallint] IDENTITY(1,1) NOT NULL,
+	[SPFUID] [smallint] NULL,
+	[CommitteMemberName] [varchar](250) NULL,
+	[Designation] [varchar](50) NULL,
+	[PCommitteRole] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_SPF__18899244] PRIMARY KEY CLUSTERED 
+(
+	[SPFUPCommitteMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SubComponentActivityMapping]    Script Date: 24-02-2018 14:04:19 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SubComponentActivityMapping](
+	[SubcomponentActivityMappingID] [int] IDENTITY(1,1) NOT NULL,
+	[SubComponentID] [tinyint] NULL,
+	[ActivityID] [tinyint] NULL,
+ CONSTRAINT [PK__tbl_CNF_PMSS_Sub__2B9C66B8] PRIMARY KEY CLUSTERED 
+(
+	[SubcomponentActivityMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_SubmitterApproverRoles]    Script Date: 24-02-2018 14:05:32 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_SubmitterApproverRoles](
+	[UniqueID] [int] IDENTITY(1,1) NOT NULL,
+	[Level] [varchar](5) NULL,
+	[StrConstant] [varchar](25) NULL,
+	[RoleIDs] [varchar](25) NULL,
+	[Comments] [varchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UniqueID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_CNF_PMSS_TechnicalCriteria]    Script Date: 24-02-2018 14:05:45 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_CNF_PMSS_TechnicalCriteria](
+	[CriteriaID] [int] IDENTITY(1,1) NOT NULL,
+	[ProcurementMethodID] [tinyint] NULL,
+	[TechnicalCriteria] [varchar](500) NULL,
+	[Marks] [float] NULL,
+	[OrderNumber] [tinyint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CriteriaID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_BidderDetails]    Script Date: 24-02-2018 14:07:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_BidderDetails](
+	[BidderDetailID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[BidderName] [varchar](250) NULL,
+	[BidderAddress] [varchar](500) NULL,
+	[City] [varchar](30) NULL,
+	[State] [varchar](30) NULL,
+	[PinCode] [varchar](30) NULL,
+	[BidderPhone] [varchar](100) NULL,
+	[EmailID] [varchar](50) NULL,
+	[BidderSource] [varchar](50) NULL,
+	[PANNumber] [varchar](50) NULL,
+	[TANNumber] [varchar](50) NULL,
+	[TaxNumber] [varchar](50) NULL,
+	[LOIGeneratedDate] [datetime] NULL,
+	[IsBidReceived] [tinyint] NULL,
+	[BidReceivedDate] [datetime] NULL,
+	[BidNumber] [varchar](20) NULL,
+	[TotalPrice] [float] NULL,
+	[NameOfRepresentative] [varchar](50) NULL,
+	[BidValidity] [tinyint] NULL,
+	[IsBidDulySigned] [tinyint] NULL,
+	[ReadOutPrice] [float] NULL,
+	[Comments] [varchar](500) NULL,
+	[IsQtyAsSpecified] [tinyint] NULL,
+	[AreDeliveryTermsAsSpecified] [tinyint] NULL,
+	[IsdeliveryPlaceAsSpecified] [tinyint] NULL,
+	[ArePaymentTermsAgreed] [tinyint] NULL,
+	[IsQtnTechnicallyReponsive] [tinyint] NULL,
+	[IsTrainingIncluded] [tinyint] NULL,
+	[IsTestingCommInstIncluded] [tinyint] NULL,
+	[IsCommerciallyResponsive] [bit] NULL,
+	[IsOverallResponsive] [bit] NULL,
+	[EvaluatedPrice] [float] NULL,
+	[LOAGeneratedDate] [datetime] NULL,
+	[POGeneratedDate] [datetime] NULL,
+	[PONumber] [varchar](20) NULL,
+	[IsDomesticBidder] [bit] NULL,
+	[IsEOIBidder] [bit] NULL,
+	[TechnicalScore] [real] NULL,
+	[FinancialScore] [real] NULL,
+	[OtherSourceComments] [varchar](30) NULL,
+	[IsPostQualified] [bit] NULL,
+	[FAXNumber] [varchar](100) NULL,
+	[IsTechProposalReceived] [bit] NULL,
+	[TechnicalRank] [float] NULL,
+	[FinancialRank] [float] NULL,
+	[CombinedRank] [tinyint] NULL,
+	[CombinedScore] [float] NULL,
+	[IsResponsive] [bit] NULL,
+	[GeneralComments] [varchar](500) NULL,
+	[IsMailSent] [bit] NULL,
+	[Country] [varchar](100) NULL,
+	[Nationality] [varchar](50) NULL,
+	[IsBidderTerminated] [bit] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_Bidd__6BF6E2EF] PRIMARY KEY CLUSTERED 
+(
+	[BidderDetailID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_BidderDetails] ADD  DEFAULT ((0)) FOR [IsMailSent]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_BidderItemDetails]    Script Date: 24-02-2018 14:07:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_BidderItemDetails](
+	[BidderItemDetailID] [int] IDENTITY(1,1) NOT NULL,
+	[BidderDetailID] [int] NULL,
+	[PTPackageID] [int] NULL,
+	[PTItemID] [int] NULL,
+	[I_ReadOutPrice] [float] NULL,
+	[I_Comments] [varchar](500) NULL,
+	[I_IsQtyAsSpecified] [tinyint] NULL,
+	[I_AreDeliveryPlaceAsSpecified] [tinyint] NULL,
+	[I_IsQtnTechnicallyReponsive] [tinyint] NULL,
+	[I_IsTrainingIncluded] [tinyint] NULL,
+	[I_IsTestingCommInstIncluded] [tinyint] NULL,
+	[I_IsCommerciallyResponsive] [bit] NULL,
+	[I_IsOverallResponsive] [bit] NULL,
+	[I_EvaluatedPrice] [float] NULL,
+	[I_Rate] [float] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_Bidd__4FAFA9FC] PRIMARY KEY CLUSTERED 
+(
+	[BidderItemDetailID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_BidExtension]    Script Date: 24-02-2018 14:07:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_BidExtension](
+	[UniqueID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[ExtensionDate] [datetime] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[OldLastProposalSubdate] [datetime] NULL,
+	[Reason] [varchar](500) NULL,
+ CONSTRAINT [PK_tbl_PP_PMSS_BidExtension] PRIMARY KEY CLUSTERED 
+(
+	[UniqueID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_Circulars]    Script Date: 24-02-2018 14:07:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_Circulars](
+	[CircularID] [int] IDENTITY(1,1) NOT NULL,
+	[CircularName] [varchar](100) NULL,
+	[CircularDesc] [varchar](4000) NULL,
+	[CircularDate] [datetime] NULL,
+	[InstitutionID] [int] NULL,
+	[SPFUID] [int] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CircularID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_Documents]    Script Date: 24-02-2018 14:07:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_Documents](
+	[DocumentID] [int] IDENTITY(1,1) NOT NULL,
+	[UploadedDate] [datetime] NULL,
+	[DirectoryName] [nvarchar](500) NULL,
+	[FileName] [nvarchar](500) NULL,
+	[OriginalFileName] [nvarchar](500) NULL,
+	[FileSize] [float] NULL,
+	[Description] [nvarchar](500) NULL,
+	[CreatedDate] [datetime] NULL,
+	[UploadedBy] [nvarchar](50) NULL,
+	[CategoryID] [tinyint] NULL,
+	[SubCategoryID] [tinyint] NULL,
+	[TagID] [int] NULL,
+	[UniqueID] [int] NULL,
+ CONSTRAINT [PK_tbl_PP_PMSS_Documents] PRIMARY KEY CLUSTERED 
+(
+	[DocumentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_GoodsReceivedNote]    Script Date: 24-02-2018 14:08:23 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_GoodsReceivedNote](
+	[GRNID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[BidderDetailID] [int] NULL,
+	[ReceivedOn] [datetime] NULL,
+	[IsAssetRegGen] [bit] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[GRNID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_GoodsReceivedNote] ADD  DEFAULT ((0)) FOR [IsAssetRegGen]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_GoodsReceivedNoteDetails]    Script Date: 24-02-2018 14:08:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_GoodsReceivedNoteDetails](
+	[GRNDetailsID] [int] IDENTITY(1,1) NOT NULL,
+	[GRNID] [int] NULL,
+	[PTItemID] [int] NULL,
+	[PTItemCode] [varchar](250) NULL,
+	[ReceivedQuantity] [int] NULL,
+	[Comments] [varchar](1000) NULL,
+	[StockRegisterName] [varchar](500) NULL,
+	[PageNo] [varchar](50) NULL,
+	[SerialNo] [varchar](50) NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_Good__0A865707] PRIMARY KEY CLUSTERED 
+(
+	[GRNDetailsID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_GRN]    Script Date: 24-02-2018 14:08:46 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_GRN](
+	[GRNID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[PTItemID] [int] NULL,
+	[ReceivedOn] [datetime] NULL,
+	[ReceivedQuantity] [smallint] NULL,
+	[Comments] [varchar](1000) NULL,
+	[StockRegisterName] [varchar](500) NULL,
+	[PageNo] [varchar](50) NULL,
+	[SerialNo] [varchar](50) NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_GRN__37F81BFC] PRIMARY KEY CLUSTERED 
+(
+	[GRNID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_GRNItemDistribution]    Script Date: 24-02-2018 14:08:59 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_GRNItemDistribution](
+	[GRNItemDistributionID] [int] IDENTITY(1,1) NOT NULL,
+	[GRNDetailID] [int] NULL,
+	[DepartmentID] [smallint] NULL,
+	[Quantity] [smallint] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_GRNI__0F4B0C24] PRIMARY KEY CLUSTERED 
+(
+	[GRNItemDistributionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_InstitutionPP]    Script Date: 24-02-2018 14:09:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_InstitutionPP](
+	[PPID] [int] IDENTITY(1,1) NOT NULL,
+	[PPPeriodID] [tinyint] NULL,
+	[InstitutionID] [smallint] NULL,
+	[SubComponentID] [tinyint] NULL,
+	[SPFUID] [smallint] NULL,
+	[NPIUID] [tinyint] NULL,
+	[RevisionNo] [tinyint] NULL,
+	[PlanApproved] [bit] NULL,
+	[Remarks] [varchar](1000) NULL,
+	[TotalEstCost_CW] [float] NULL,
+	[TotalEstCost_Goods] [float] NULL,
+	[TotalEstCost_Services] [float] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[PlanLevel] [varchar](5) NULL,
+	[CurrentStageID] [tinyint] NULL,
+	[IsConsiInRevi] [bit] NULL,
+	[LastPPSubmissionDate] [datetime] NULL,
+	[DirectorRevisionNo] [int] NULL,
+	[NPIURevisionNo] [int] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_Inst__6179547C] PRIMARY KEY CLUSTERED 
+(
+	[PPID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_InstitutionPP] ADD  CONSTRAINT [DF__tbl_PP_PM__PlanA__626D78B5]  DEFAULT ((0)) FOR [PlanApproved]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_L2Bidder]    Script Date: 24-02-2018 14:09:28 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_L2Bidder](
+	[UniqueID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[L2Bidder] [int] NULL,
+	[L2Comments] [varchar](500) NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[PrevL1Bidder] [int] NULL,
+	[PrevNegoDate] [datetime] NULL,
+	[IsNegoApproved] [bit] NULL,
+	[NegoApprovalDate] [datetime] NULL
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_Milestones]    Script Date: 24-02-2018 14:09:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_Milestones](
+	[MilestoneID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NOT NULL,
+	[MilestoneName] [varchar](250) NULL,
+	[MilestonePercentage] [float] NULL,
+	[ExpectedCompletionDate] [datetime] NULL,
+	[ActualCompletionDate] [datetime] NULL,
+	[ChequeOrDraftNumber] [varchar](50) NULL,
+	[PaymentDate] [datetime] NULL,
+	[ActualPaymentAmount] [float] NULL,
+	[LiquidatedDamagesAmount] [float] NULL,
+	[Comments] [varchar](500) NULL,
+	[POID] [int] NULL,
+	[ApplicableLiquidatedDamages] [float] NULL,
+	[IsLiquidatedDamagesWaived] [bit] NULL,
+	[IsWorkCompleted] [bit] NULL,
+	[IsWCCGenerated] [bit] NULL,
+	[MilestoneActualCompletionPeriod] [varchar](50) NULL,
+	[ExpectedPaymentAmount] [float] NULL,
+	[ExpectedCompletionPeriod] [varchar](50) NULL,
+	[ActualCompletionPeriodComments] [varchar](1000) NULL,
+	[PaymentDateComments] [varchar](1000) NULL,
+	[ActualPaymentAmountComments] [varchar](1000) NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[MilestoneDescription] [varchar](500) NULL,
+	[MilestoneType] [tinyint] NULL,
+	[ExpectedPaymentDate] [datetime] NULL,
+	[DeliveryMilestoneID] [int] NULL,
+	[WCCSystemFile] [varchar](500) NULL,
+	[WCCOriginalFile] [varchar](500) NULL,
+	[WCCComments] [varchar](500) NULL,
+	[DeductionForMobilisation] [float] NULL,
+	[RetentionMoneyDeduction] [float] NULL,
+	[TDS] [float] NULL,
+	[IsQualityCheckCarriedOut] [tinyint] NULL,
+	[MaxLiquidatedDamages] [float] NULL,
+	[RetentionMoney] [float] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_Mile__28CAE705] PRIMARY KEY CLUSTERED 
+(
+	[MilestoneID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_Milestones] ADD  CONSTRAINT [DF__tbl_PP_PM__IsLiq__752125CD]  DEFAULT ((0)) FOR [IsLiquidatedDamagesWaived]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_Milestones] ADD  CONSTRAINT [DF__tbl_PP_PM__IsWor__76154A06]  DEFAULT ((0)) FOR [IsWorkCompleted]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_Milestones] ADD  CONSTRAINT [DF__tbl_PP_PM__IsWCC__77096E3F]  DEFAULT ((0)) FOR [IsWCCGenerated]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PPItemDepartmentMapping]    Script Date: 24-02-2018 14:09:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PPItemDepartmentMapping](
+	[PPItemDepartmentMappingID] [int] IDENTITY(1,1) NOT NULL,
+	[PPItemID] [int] NULL,
+	[DepartmentID] [smallint] NULL,
+	[Quantity] [smallint] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PPIt__098745D6] PRIMARY KEY CLUSTERED 
+(
+	[PPItemDepartmentMappingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PPItemDetails]    Script Date: 24-02-2018 14:10:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PPItemDetails](
+	[PPItemID] [int] IDENTITY(1,1) NOT NULL,
+	[PPPackageID] [int] NULL,
+	[Item_Name] [varchar](250) NULL,
+	[Item_Description] [varchar](1000) NULL,
+	[ItemSubcategoryID] [smallint] NULL,
+	[Item_ProcuringDepartmentID] [smallint] NULL,
+	[Item_Quantity] [smallint] NULL,
+	[Item_EstimatedCostPerUnit] [float] NULL,
+	[Item_TotalEstimatedCost] [float] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PPIt__3C12C5A3] PRIMARY KEY CLUSTERED 
+(
+	[PPItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PPPackageDetails]    Script Date: 24-02-2018 14:10:17 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PPPackageDetails](
+	[PPPackageID] [int] IDENTITY(1,1) NOT NULL,
+	[PPID] [int] NULL,
+	[PackageCode] [varchar](100) NULL,
+	[PackageName] [varchar](250) NULL,
+	[SubcomponentID] [tinyint] NULL,
+	[ActivityID] [tinyint] NULL,
+	[ItemCategoryID] [tinyint] NULL,
+	[Description] [varchar](2000) NULL,
+	[ItemSubcategoryID] [tinyint] NULL,
+	[TotalEstimatedCost] [float] NULL,
+	[ProcurementMethodID] [tinyint] NULL,
+	[IsProprietary] [bit] NULL,
+	[EstimatedFinancialSanctionDate] [datetime] NULL,
+	[BidDocumentPreparationDate] [datetime] NULL,
+	[BankNOCForBiddingDocuments] [datetime] NULL,
+	[BidInvitationDate] [datetime] NULL,
+	[BidOpeningDate] [datetime] NULL,
+	[ContractAwardDate] [datetime] NULL,
+	[ContractCompletionDate] [datetime] NULL,
+	[TORFinalizationDate] [datetime] NULL,
+	[AdvertisementDate] [datetime] NULL,
+	[FinalDraftToBeForwardedToTheBankDate] [datetime] NULL,
+	[NoObjectionFromBankForRFP] [datetime] NULL,
+	[RFPIssuedDate] [datetime] NULL,
+	[LastDateToReceiveProposals] [datetime] NULL,
+	[EvaluationDate] [datetime] NULL,
+	[NoObjectionFromBankForEvaluation] [datetime] NULL,
+	[RevisionComments] [varchar](500) NULL,
+	[RevisionRequestedBy] [varchar](100) NULL,
+	[RevisionApprovedBy] [varchar](100) NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[Activity] [varchar](200) NULL,
+	[ServiceProvider] [tinyint] NULL,
+	[IsDGSG] [bit] NULL,
+	[IsPartialPkg] [bit] NULL,
+	[IsCOE] [bit] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PPPa__1AB1D1D8] PRIMARY KEY CLUSTERED 
+(
+	[PPPackageID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTItemDetails]    Script Date: 24-02-2018 14:10:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTItemDetails](
+	[PTItemID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[PPItemID] [int] NULL,
+	[Specifications] [varchar](5000) NULL,
+	[InstallationRequirements] [varchar](500) NULL,
+	[Item_Quantity] [int] NULL,
+	[Item_TotalEstimatedCost] [float] NULL,
+	[IsTrainingRequired] [bit] NULL,
+	[IsInstallationRequired] [bit] NULL,
+	[Warranty] [varchar](150) NULL,
+	[AMC] [varchar](150) NULL,
+	[PlaceOfDelivery] [varchar](500) NULL,
+	[ExpectedDeliveryDate] [datetime] NULL,
+	[DeliveryPeriod] [varchar](50) NULL,
+	[POGenerationDate] [datetime] NULL,
+	[PONumber] [varchar](20) NULL,
+	[ContractWinnerID] [int] NULL,
+	[ContractAwardDate] [datetime] NULL,
+	[L1Comments] [varchar](1000) NULL,
+	[ContractValue] [float] NULL,
+	[PlannedContractCompletionDate] [datetime] NULL,
+	[ActualContactCompletionDate] [datetime] NULL,
+	[InvoiceReceivedDate] [datetime] NULL,
+	[PaymentReleasedDate] [datetime] NULL,
+	[RecommandationComments] [varchar](1000) NULL,
+	[BalanceQuantity] [smallint] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[RCNO] [varchar](50) NULL,
+	[RCItemNO] [varchar](50) NULL,
+	[ModelNo] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PTIt__523710EC] PRIMARY KEY CLUSTERED 
+(
+	[PTItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTItemDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsTra__532B3525]  DEFAULT ((0)) FOR [IsTrainingRequired]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTItemDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsIns__541F595E]  DEFAULT ((0)) FOR [IsInstallationRequired]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTPackage_SupplierItemQuestions]    Script Date: 24-02-2018 14:11:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTPackage_SupplierItemQuestions](
+	[PTSupplierItemQuestionID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[SupplierID] [int] NULL,
+	[PTItemID] [int] NULL,
+	[PTQuestionID] [int] NULL,
+	[UserResponse] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PTSupplierItemQuestionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTPackageDetails]    Script Date: 24-02-2018 14:11:53 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails](
+	[PTPackageID] [int] IDENTITY(1,1) NOT NULL,
+	[PPPackageID] [int] NULL,
+	[ProcurementMethodID] [tinyint] NULL,
+	[PTCode] [varchar](100) NULL,
+	[InitiationDate] [datetime] NULL,
+	[ActualFinancialSanctionDate] [datetime] NULL,
+	[Specifications] [varchar](1000) NULL,
+	[IsPropItem] [bit] NULL,
+	[IsTrainingRequired] [bit] NULL,
+	[TrainingClause] [varchar](500) NULL,
+	[IsInstallationRequired] [bit] NULL,
+	[TestingInstallationClause] [varchar](250) NULL,
+	[ExpectedDeliveryDate] [datetime] NULL,
+	[Warranty] [varchar](150) NULL,
+	[AMC] [varchar](150) NULL,
+	[InstallationRequirements] [varchar](500) NULL,
+	[DeliveryPeriod] [varchar](50) NULL,
+	[IsProprietary] [bit] NULL,
+	[PlaceOfDelivery] [varchar](500) NULL,
+	[TotalEstimatedCost] [float] NULL,
+	[TORDetails] [varchar](500) NULL,
+	[EOIInvitationDate] [datetime] NULL,
+	[EOIOpeningDate] [datetime] NULL,
+	[EOIOpeningTime] [varchar](5) NULL,
+	[EOISubmissionLastDate] [datetime] NULL,
+	[EOISubmissionLastTime] [varchar](5) NULL,
+	[AdvertisementDate] [datetime] NULL,
+	[AdvertisementDetails] [varchar](500) NULL,
+	[LocalPaperDetails] [varchar](500) NULL,
+	[NationalPaperDetails] [varchar](500) NULL,
+	[InternationalSiteDetails] [varchar](500) NULL,
+	[BidDocumentPreparationDate] [datetime] NULL,
+	[BidEvaluation] [bit] NULL,
+	[BidValidity] [int] NULL,
+	[BankBidApprovalDate] [datetime] NULL,
+	[BidsInvitationDate] [datetime] NULL,
+	[BidsOpeningDate] [datetime] NULL,
+	[BidsOpeningTime] [varchar](5) NULL,
+	[BidSubmissionLastDate] [datetime] NULL,
+	[BidSubmissionLastTime] [varchar](5) NULL,
+	[BidMOM] [varchar](1000) NULL,
+	[PassingScore] [float] NULL,
+	[TechinalScorePercentage] [float] NULL,
+	[FinancialScorePercentage] [float] NULL,
+	[PrebidMOM] [varchar](1000) NULL,
+	[NegociationComments] [varchar](500) NULL,
+	[ContractWinnerID] [int] NULL,
+	[ContractAwardDate] [datetime] NULL,
+	[ContractValue] [float] NULL,
+	[L1Comments] [varchar](500) NULL,
+	[POGeneratedDate] [datetime] NULL,
+	[PONo] [varchar](100) NULL,
+	[PlannedContractCompletionDate] [datetime] NULL,
+	[ActualContactCompletionDate] [datetime] NULL,
+	[InvoiceReceivedDate] [datetime] NULL,
+	[PaymentReleasedDate] [datetime] NULL,
+	[IsLocked] [bit] NULL,
+	[IsRequestedforUnlock] [bit] NULL,
+	[RequestedforUnlockComments] [varchar](250) NULL,
+	[UnlockComments] [varchar](250) NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[RequestedforUnlockBy] [varchar](50) NULL,
+	[UnlockedBy] [varchar](50) NULL,
+	[POSrNumber] [int] NULL,
+	[ProcurementStageID] [tinyint] NULL,
+	[PerformanceSecurityAmt] [float] NULL,
+	[MaintenancePeriodExpDate] [datetime] NULL,
+	[WorkStartDate] [datetime] NULL,
+	[WorkCompletionDate] [datetime] NULL,
+	[WorkCompletionPeriod] [varchar](50) NULL,
+	[LiquidatedDamagesPerDay] [float] NULL,
+	[PlannedBidopeningDate] [datetime] NULL,
+	[PlannedBidopeningTime] [varchar](20) NULL,
+	[PlannedBidopeningLocation] [varchar](500) NULL,
+	[ContractStartDate] [datetime] NULL,
+	[BidDocumentSaleStartDate] [datetime] NULL,
+	[BidDocumentSaleEndDate] [datetime] NULL,
+	[BidDocumentSaleStartTime] [varchar](5) NULL,
+	[BidDocumentSaleEndTime] [varchar](5) NULL,
+	[BidDocumentSalePlace] [varchar](250) NULL,
+	[BidCommunicationAddress] [varchar](250) NULL,
+	[BidPrice] [float] NULL,
+	[BidChqFavOf] [varchar](50) NULL,
+	[BidChqPayableAt] [varchar](50) NULL,
+	[BidPostalchargesI] [float] NULL,
+	[BidPostalchargesO] [float] NULL,
+	[LastDateofBidReceipt] [datetime] NULL,
+	[LastTimeofBidReceipt] [varchar](5) NULL,
+	[PrebidDate] [datetime] NULL,
+	[PrebidTime] [varchar](5) NULL,
+	[ActualPrebidDate] [datetime] NULL,
+	[OfficerInvitingBids] [varchar](30) NULL,
+	[DateClarificationIssued] [datetime] NULL,
+	[BidAmmendments] [varchar](250) NULL,
+	[IsClarificationIssuedToAll] [varchar](3) NULL,
+	[DefectCorrectionPeriod] [varchar](30) NULL,
+	[PlaceforArbitration] [varchar](30) NULL,
+	[PurchaserNoticeAddress] [varchar](250) NULL,
+	[BidSecurityValidity] [int] NULL,
+	[BidSecurity] [float] NULL,
+	[NationalAdvertisementDate] [datetime] NULL,
+	[AdvSrNumber] [int] NULL,
+	[PerfSecurityWithin21Days] [varchar](3) NULL,
+	[PerfSecurityAmt] [float] NULL,
+	[PerfSecurityValidityAcceptable] [varchar](3) NULL,
+	[IsArbitratorAgreed] [varchar](3) NULL,
+	[ContractDocSignDate] [datetime] NULL,
+	[L1BidderID] [int] NULL,
+	[PerformanceSecurityExpiryDate] [datetime] NULL,
+	[PerformanceSecurityInstrument] [tinyint] NULL,
+	[PerformanceSecurityPeriod] [float] NULL,
+	[CombinedProposal] [bit] NULL,
+	[InputsFromClient] [varchar](500) NULL,
+	[ReimbursableExpenses] [float] NULL,
+	[AssociationWithOtherCandidate] [tinyint] NULL,
+	[LocalTaxation] [tinyint] NULL,
+	[LastDateOfValidity] [datetime] NULL,
+	[LastDateForClarifications] [datetime] NULL,
+	[ClarificationIssuedPlace] [varchar](50) NULL,
+	[ProposalLanguage] [varchar](30) NULL,
+	[NoofCopiedToBeSubmitted] [tinyint] NULL,
+	[NoofStaffMonthsBudget] [float] NULL,
+	[ExpectedContractNegotiationDate] [datetime] NULL,
+	[ClarificationDetails] [varchar](500) NULL,
+	[DateOfNegociation] [datetime] NULL,
+	[TypeOfContract] [tinyint] NULL,
+	[MemberInCharge] [varchar](100) NULL,
+	[ThirdPartyInsuranceCoverageandLiability] [float] NULL,
+	[ProfInsuranceCoverageandLiability] [float] NULL,
+	[EffectiveConditions] [varchar](100) NULL,
+	[InterestRate] [float] NULL,
+	[AdvPaymentReqd] [tinyint] NULL,
+	[BankGuanteeSubmitted] [tinyint] NULL,
+	[PaymentMilestoneDefined] [tinyint] NULL,
+	[IsTORApproved] [bit] NULL,
+	[TORApprovalDate] [datetime] NULL,
+	[IsEOIApproved] [bit] NULL,
+	[EOIApprovalDate] [datetime] NULL,
+	[IsRFPApproved] [bit] NULL,
+	[RFPApprovalDate] [datetime] NULL,
+	[IsTechEvalApproved] [bit] NULL,
+	[TechEvalApprovalDate] [datetime] NULL,
+	[IsFinEvalApproved] [bit] NULL,
+	[FinEvalApprovalDate] [datetime] NULL,
+	[IsContractApproved] [bit] NULL,
+	[ContractApprovalDate] [datetime] NULL,
+	[ActualPublicationDate_Local] [datetime] NULL,
+	[ActualPublicationDate_National] [datetime] NULL,
+	[ClientRepresentative] [varchar](100) NULL,
+	[AvailableBudget] [float] NULL,
+	[ContractNegotiationAddress] [varchar](500) NULL,
+	[ConsultingServiceLocation] [varchar](100) NULL,
+	[UNDB] [datetime] NULL,
+	[IsBidCancelled] [bit] NULL,
+	[MobilizationPaidOrNot] [tinyint] NULL,
+	[BidSecurityAgainstMobilization] [tinyint] NULL,
+	[MobilizationAmt] [float] NULL,
+	[BasicValue] [float] NULL,
+	[ApplicableTax] [float] NULL,
+	[MaxLiquidatedDamages] [float] NULL,
+	[PerfSecRcvdDate] [datetime] NULL,
+	[LOAGeneratedDate] [datetime] NULL,
+	[PriorReview] [bit] NULL,
+	[IsNegoApproved] [bit] NULL,
+	[NegoApprovalDate] [datetime] NULL,
+	[NegoStatus] [tinyint] NULL,
+	[IsPOAmmendment] [tinyint] NULL,
+	[POAmmendmentFurnished] [tinyint] NULL,
+	[IsPOAmmendmentG] [tinyint] NULL,
+	[POAmmendmentFurnishedG] [tinyint] NULL,
+	[LOAFlag] [tinyint] NULL,
+	[IsPOFinalized] [smallint] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PTPa__276CAE78] PRIMARY KEY CLUSTERED 
+(
+	[PTPackageID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsPro__2860D2B1]  DEFAULT ((0)) FOR [IsPropItem]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsTra__2954F6EA]  DEFAULT ((0)) FOR [IsTrainingRequired]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsIns__2A491B23]  DEFAULT ((0)) FOR [IsInstallationRequired]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsPro__2B3D3F5C]  DEFAULT ((0)) FOR [IsProprietary]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__BidEv__2D2587CE]  DEFAULT ((0)) FOR [BidEvaluation]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsLoc__2E19AC07]  DEFAULT ((0)) FOR [IsLocked]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsReq__2F0DD040]  DEFAULT ((0)) FOR [IsRequestedforUnlock]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__POSrN__4369CEA8]  DEFAULT ((0)) FOR [POSrNumber]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsBid__56927D0C]  DEFAULT ((0)) FOR [IsBidCancelled]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTPackageICBDetails]    Script Date: 24-02-2018 14:12:21 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails](
+	[ICBDetailID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[ListOfDocuments] [varchar](1000) NULL,
+	[YearOfEditionIncoterms] [smallint] NULL,
+	[PlaceOfDestination] [varchar](500) NULL,
+	[ProjectSite] [varchar](500) NULL,
+	[IncotermOtharThanCIP] [float] NULL,
+	[IsBidderPriceAdjustable] [tinyint] NULL,
+	[IsManufacturerAuthReq] [tinyint] NULL,
+	[IsAlternativeBid] [tinyint] NULL,
+	[IsAfterSaleSerReq] [tinyint] NULL,
+	[BidSecurityOption] [tinyint] NULL,
+	[BidderIneligiblePeriod] [real] NULL,
+	[NoOfCopies] [tinyint] NULL,
+	[EnvelopeLabels] [varchar](1000) NULL,
+	[DomesticPreferences] [tinyint] NULL,
+	[QtnIncPer] [float] NULL,
+	[QtyDecPer] [float] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PTPa__5F5CCD37] PRIMARY KEY CLUSTERED 
+(
+	[ICBDetailID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsBid__6050F170]  DEFAULT ((0)) FOR [IsBidderPriceAdjustable]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsMan__614515A9]  DEFAULT ((0)) FOR [IsManufacturerAuthReq]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsAlt__623939E2]  DEFAULT ((0)) FOR [IsAlternativeBid]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__IsAft__632D5E1B]  DEFAULT ((0)) FOR [IsAfterSaleSerReq]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__Domes__64218254]  DEFAULT ((0)) FOR [DomesticPreferences]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__Creat__6515A68D]  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageICBDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__Modif__6609CAC6]  DEFAULT (getdate()) FOR [ModifiedDate]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTPackagePurchaseCommitte]    Script Date: 24-02-2018 14:12:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTPackagePurchaseCommitte](
+	[PTPackagePurchaseCommitteID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[PCMemberName] [varchar](250) NULL,
+	[Designation] [varchar](50) NULL,
+	[PCommitteRole] [varchar](50) NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PTPa__787CB565] PRIMARY KEY CLUSTERED 
+(
+	[PTPackagePurchaseCommitteID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTPackageQuestions]    Script Date: 24-02-2018 14:12:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTPackageQuestions](
+	[PTQuestionID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[QuestionID] [int] NULL,
+	[Question] [varchar](250) NULL,
+	[ProcurementMethodID] [tinyint] NULL,
+	[CategoryID] [tinyint] NULL,
+	[StageID] [tinyint] NULL,
+	[QuestionCategoryID] [tinyint] NULL,
+	[Datatype] [tinyint] NULL,
+	[IsItemWise] [bit] NULL,
+	[IsDecisionMakingQuestion] [bit] NULL,
+	[NonResponsiveValue] [varchar](5) NULL,
+	[IsSystemQuestion] [bit] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_PTPa__50E3C557] PRIMARY KEY CLUSTERED 
+(
+	[PTQuestionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PTPackageQuestions] ADD  CONSTRAINT [DF__tbl_PP_PM__Datat__51D7E990]  DEFAULT ((1)) FOR [Datatype]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTPackageSubCriteria]    Script Date: 24-02-2018 14:12:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTPackageSubCriteria](
+	[PTPackageSubCriteriaID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackgeTCriteriaID] [int] NULL,
+	[SubCriteriaID] [int] NULL,
+	[SubCriteria] [varchar](500) NULL,
+	[SubCriteria_Marks] [float] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PTPackageSubCriteriaID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PTPackageTechnicalCriteria]    Script Date: 24-02-2018 14:13:01 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PTPackageTechnicalCriteria](
+	[PTPackgeTCriteriaID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[CriteriaID] [int] NULL,
+	[ProcurementMethodID] [tinyint] NULL,
+	[TechnicalCriteria] [varchar](500) NULL,
+	[Marks] [float] NULL,
+	[OrderNumber] [tinyint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PTPackgeTCriteriaID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PurchaseOrder]    Script Date: 24-02-2018 14:13:10 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PurchaseOrder](
+	[POID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[BidderDetailID] [int] NULL,
+	[PONumber] [varchar](100) NULL,
+	[PODate] [datetime] NULL,
+	[VATPercent] [float] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+	[OctroiAndOthers] [float] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[POID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PurchaseOrder] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PurchaseOrder] ADD  DEFAULT (getdate()) FOR [ModifiedDate]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_PurchaseOrderDetails]    Script Date: 24-02-2018 14:13:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_PurchaseOrderDetails](
+	[PODetailsID] [int] IDENTITY(1,1) NOT NULL,
+	[POID] [int] NULL,
+	[PTItemID] [int] NULL,
+	[PO_Quantity] [int] NULL,
+	[PO_EstimatedCostPerUnit] [float] NULL,
+	[PO_TotalEstimatedCost] [float] NULL,
+	[PTPackageID] [int] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+ CONSTRAINT [PK__tbl_PP_PMSS_Purc__0AF06B5B] PRIMARY KEY CLUSTERED 
+(
+	[PODetailsID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PurchaseOrderDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__Creat__0BE48F94]  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_PurchaseOrderDetails] ADD  CONSTRAINT [DF__tbl_PP_PM__Modif__0CD8B3CD]  DEFAULT (getdate()) FOR [ModifiedDate]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_ReviseTimeLine]    Script Date: 24-02-2018 14:13:29 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_ReviseTimeLine](
+	[ReviseTimelineID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NOT NULL,
+	[PPPackageID] [int] NULL,
+	[AdvertisementDate] [datetime] NULL,
+	[BankNOCForBiddingDocuments] [datetime] NULL,
+	[BidDocumentPreparationDate] [datetime] NULL,
+	[BidInvitationDate] [datetime] NULL,
+	[BidOpeningDate] [datetime] NULL,
+	[ContractAwardDate] [datetime] NULL,
+	[ContractCompletionDate] [datetime] NULL,
+	[EvaluationDate] [datetime] NULL,
+	[FinalDraftToBeForwardedToTheBankDate] [datetime] NULL,
+	[LastDateToReceiveProposals] [datetime] NULL,
+	[NoObjectionFromBankForEvaluation] [datetime] NULL,
+	[NoObjectionFromBankForRFP] [datetime] NULL,
+	[RFPIssuedDate] [datetime] NULL,
+	[TORFinalizationDate] [datetime] NULL,
+	[IsUpdated] [tinyint] NULL,
+ CONSTRAINT [PK_tbl_PP_PMSS_ReviseTimeLine] PRIMARY KEY CLUSTERED 
+(
+	[ReviseTimelineID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_ReviseTimeLine] ADD  DEFAULT ((0)) FOR [IsUpdated]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_SupplierSubCriteria]    Script Date: 24-02-2018 14:13:38 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_SupplierSubCriteria](
+	[SupplierTechCriteriaID] [int] IDENTITY(1,1) NOT NULL,
+	[BidderDetailID] [int] NULL,
+	[PTPackgeTCriteriaID] [int] NULL,
+	[PTPackageSubCriteriaID] [int] NULL,
+	[PTPackageID] [int] NULL,
+	[Marks] [float] NULL,
+	[ISResponsive] [bit] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[SupplierTechCriteriaID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_SupplierSubCriteria] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_SupplierSubCriteria] ADD  DEFAULT (getdate()) FOR [ModifiedDate]
+GO
+
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_SupplierTechnicalCriteria]    Script Date: 24-02-2018 14:13:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_SupplierTechnicalCriteria](
+	[SupplierTechCriteriaID] [int] IDENTITY(1,1) NOT NULL,
+	[BidderDetailID] [int] NULL,
+	[PTPackgeTCriteriaID] [int] NULL,
+	[PTPackageID] [int] NULL,
+	[ISResponsive] [bit] NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[SupplierTechCriteriaID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_SupplierTechnicalCriteria] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+
+ALTER TABLE [dbo].[tbl_PP_PMSS_SupplierTechnicalCriteria] ADD  DEFAULT (getdate()) FOR [ModifiedDate]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_TechnicalEvaluationCommittee]    Script Date: 24-02-2018 14:13:59 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_TechnicalEvaluationCommittee](
+	[TechEvalCommitteeID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[CommitteeMemberName] [varchar](250) NULL,
+ CONSTRAINT [PK_tbl_PP_PMSS_TechnicalEvaluationCommittee] PRIMARY KEY CLUSTERED 
+(
+	[TechEvalCommitteeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [teqip3]
+GO
+
+/****** Object:  Table [dbo].[tbl_PP_PMSS_WorkCompletionStatus]    Script Date: 24-02-2018 14:14:08 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_PP_PMSS_WorkCompletionStatus](
+	[WCStatusID] [int] IDENTITY(1,1) NOT NULL,
+	[PTPackageID] [int] NULL,
+	[ActualWorkCompletionDate] [datetime] NULL,
+	[WorkDone] [varchar](100) NULL,
+	[BalanceWork] [varchar](100) NULL,
+	[Comments] [varchar](500) NULL,
+	[CreatedBy] [varchar](50) NULL,
+	[CreatedDate] [datetime] NULL,
+	[ModifiedBy] [varchar](50) NULL,
+	[ModifiedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[WCStatusID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
