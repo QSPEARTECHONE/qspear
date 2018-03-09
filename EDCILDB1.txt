@@ -415,3 +415,31 @@ CREATE TABLE TEQIP_PMSS_PROCUREMENTSTAGES(
     ISACTIVE tinyint(4) DEFAULT 1,
     PRIMARY KEY (ProcurementStageID)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+
+CREATE TABLE TEQIP_PROCUREMENTMETHOD_TIMELINE(
+    PROCUREMENTMETHOD_TIMELINEID int NOT NULL AUTO_INCREMENT,
+    PROCUREMENTMETHOD_ID int not null,
+    CATEGORY_ID int not null,
+    BidDocumentPreparationDate_days float DEFAULT NULL,
+    BankNOCForBiddingDocuments_days float DEFAULT NULL,
+    BidInvitationDate_days float DEFAULT NULL,
+    BidOpeningDate_days float DEFAULT NULL,
+    TORFinalizationDate_days float DEFAULT NULL,
+    AdvertisementDate_days float DEFAULT NULL,
+    FinalDraftToBeForwardedToTheBankDate_days float DEFAULT NULL,
+    NoObjectionFromBankForRFP_days float DEFAULT NULL,
+    RFPIssuedDate_days float DEFAULT NULL,
+    EvaluationDate_days float DEFAULT NULL,
+    NoObjectionFromBankForEvaluation_days float DEFAULT NULL,
+    ContractCompletionDate_days float DEFAULT NULL,
+    TORFinalizationDate_WithoutBankNOC_days float DEFAULT NULL,
+    AdvertisementDate_WithoutBankNOC_days float DEFAULT NULL,
+    RFPIssuedDate_WithoutBankNOC_days float DEFAULT NULL,
+    LastDateToReceiveProposals_WithoutBankNOC_days float DEFAULT NULL,
+    EvaluationDate_WithoutBankNOC_days float DEFAULT NULL,
+    ContractAwardDate_WithoutBankNOC_days float DEFAULT NULL,
+    ContractCompletionDate_WithoutBankNOC_days float DEFAULT NULL,
+    PRIMARY KEY (PROCUREMENTMETHOD_TIMELINEID),
+	  FOREIGN KEY (PROCUREMENTMETHOD_ID) REFERENCES TEQIP_PROCUREMENTMETHOD(PROCUREMENTMETHOD_ID),
+    FOREIGN KEY (CATEGORY_ID) REFERENCES TEQIP_CATEGORYMASTER(CAT_ID)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
