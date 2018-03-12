@@ -1,0 +1,23 @@
+As discussed with Vishal sir done following changes in DB
+
+1. Added REVISEID(column) in TEQIP_PACKAGE
+
+CREATED NEW TABLE TEQIP_PACKAG_history for history with  REVISEID(0,1,2,3) e.g. 
+
+
+2 .Added REVISEID,STATUS(column)  in TEQIP_ITEM_GOODS_DETAIL
+
+CREATED NEW TABLE TEQIP_ITEM_GOODS_DETAIL_history for history with  REVISEID(0,1,2,3) e.g. 
+
+3 . Added REVISEID,STATUS(column)  in TEQIP_ITEM_WORK_DETAIL
+
+CREATED NEW TABLE TEQIP_ITEM_WORK_DETAIL_HISTORY for history with  REVISEID(0,1,2,3) e.g. 
+
+4. Created table TEQIP_PLAN_APPROVALSTATUS  to store all information in one plan for institue level.
+
+
+
+
+
+
+
